@@ -1,0 +1,3 @@
+version=4
+https://boxes.thomasjensen.com/download boxes-(.*)\.src\.tar\.gz
+https://github.com/ascii-boxes/boxes/releases /ascii-boxes/boxes/archive/refs/tags/v(\d[\d.-]+)\.(?:tar(?:\.gz|\.bz2)?|tgz|zip)$

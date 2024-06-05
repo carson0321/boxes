@@ -1,0 +1,26 @@
+Description: Change default config path for Debian
+ Change the default configuration file path for Debian to
+ /etc/boxes/boxes-config.
+Origin: vendor
+Bug-Debian: https://bugs.debian.org/374490
+Bug-Debian: https://bugs.debian.org/374304
+Bug-Debian: https://bugs.debian.org/384696
+Bug-Debian: https://bugs.debian.org/457370
+Forwarded: not-needed
+Author: Julien Danjou <acid@debian.org>
+Author: Michael Prokop <mika@grml.org>
+Author: Salvatore Bonaccorso <carnil@debian.org>
+Reviewed-by: Salvatore Bonaccorso <carnil@debian.org>
+Last-Update: 2012-10-21
+
+--- a/Makefile
++++ b/Makefile
+@@ -19,7 +19,7 @@
+ 
+ 
+ # The following line (GLOBALCONF) is the only line you should need to edit!
+-GLOBALCONF = /usr/share/boxes
++GLOBALCONF = /etc/boxes/boxes-config
+ GIT_STATUS = $(shell git describe --dirty --always 2>/dev/null || echo "n/a")
+ BVERSION   = 2.1.1
+ 

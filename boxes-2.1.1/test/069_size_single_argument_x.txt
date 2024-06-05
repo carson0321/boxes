@@ -1,0 +1,16 @@
+:ARGS
+-s x7
+:INPUT
+aaa
+bbbb
+ccccc
+:OUTPUT-FILTER
+:EXPECTED
+/*********/
+/* aaa   */
+/* bbbb  */
+/* ccccc */
+/*       */
+/*       */
+/*********/
+:EOF

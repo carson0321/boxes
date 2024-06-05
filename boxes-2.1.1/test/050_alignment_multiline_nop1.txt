@@ -1,0 +1,14 @@
+:ARGS
+-s 11x5 -a c
+:INPUT
+XXXXX
+XXXXX
+XXXXX
+:OUTPUT-FILTER
+:EXPECTED
+/*********/
+/* XXXXX */
+/* XXXXX */
+/* XXXXX */
+/*********/
+:EOF

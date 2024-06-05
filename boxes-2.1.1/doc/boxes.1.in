@@ -1,0 +1,491 @@
+.\" @(#)boxes.1 2.1.1 06/14/2021
+.\"
+.TH boxes 1 "June 14 2021"
+.UC 4
+.SH NAME
+boxes \- text mode box and comment drawing filter
+.SH SYNOPSIS
+.B boxes
+[\-hlmrv] [\-a\ format] [\-d\ design] [\-e\ eol] [\-f\ file] [\-i\ indent]
+[\-k\ bool] [\-n\ encoding] [\-p\ pad] [\-q query] [\-s\ size] [\-t\ tabopts]
+[infile [outfile]]
+.SH DESCRIPTION
+.I Boxes
+is a text filter which can draw any kind of box around its input text. Box
+design choices range from simple boxes to complex ASCII art. A box can also
+be removed and repaired, even if it has been badly damaged by editing of the
+text inside. Since boxes may be open on any side,
+.I boxes
+can also be used to create regional comments in any programming language.
+New box designs can be added and shared by appending to a configuration file.
+.LP
+.I boxes
+is a command line tool, but also integrates with any text editor that
+supports filters. The
+.I boxes
+website has examples on how to configure editor integration for various
+text editors:
+.br
+<URL:https://boxes.thomasjensen.com/editors.html>
+.\" =======================================================================
+.SH OPTIONS
+Options offered by
+.I boxes
+are the following:
+.TP 0.6i
+.B \-a \fIstring\fP
+Alignment/positioning of text inside box. This option takes a format string
+argument which is read from left to right. The format string may not
+contain whitespace and must consist of one or more of the following
+components:
+.br
+
+.I h\fPx
+\- horizontal alignment of the input text block inside a potentially larger
+box. Possible values for
+.I x
+are
+.I l
+(ell, for left alignment),
+.I c
+(center), or
+.I r
+(right). This does not affect the justification of text lines within the
+input text block (use the
+.I j
+argument instead).
+.br
+.I v\fPx
+\- vertical alignment of the input text block inside a potentially larger
+box. Possible values for
+.I x
+are
+.I t
+(for top alignment),
+.I c
+(center), or
+.I b
+(bottom).
+.br
+.I j\fPx
+\- justification of lines within the input text block. Possible values for
+.I x
+are
+.I l
+(ell, for left justification),
+.I c
+(center), or
+.I r
+(right). This does not affect the alignment of the input text block itself
+within the box. Use the
+.I h
+and
+.I v
+arguments for input text block positioning.
+.br
+
+Short hand notations (can be combined with the above arguments):
+.br
+.I l
+(ell) \- short for
+.I h\fPl\fIv\fPc\fIj\fPl
+.br
+.I c
+\- short for
+.I h\fPc\fIv\fPc\fIj\fPc
+.br
+.I r
+\- short for
+.I h\fPr\fIv\fPc\fIj\fPr
+.br
+
+The factory default setting for
+.B \-a
+is
+.I h\fPl\fIv\fPt.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-c \fIstring\fP
+Command line design definition for simple cases. The argument of this
+option is the definition for the "west" (W) shape. The defined shape must
+consist of exactly one line, i.e. no multi\-line shapes are allowed. The
+.B \-c
+option is intended as a shortcut for those cases where simple regional
+comments are to be created, which only need a certain character or sequence
+of characters to be placed in front of every line. In such cases, it is
+much more convenient to simply specify
+.B \-c
+than to do a complete design definition in one's config file, where the
+only shape defined is the west shape.
+.br
+This option implies a
+.B \-d
+and does not access the config file.
+.B \-c
+may of course be used in conjunction with any of the other options. By default,
+.B \-c
+is not specified.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-d \fIstring\fP
+Design selection. The one argument of this option is the name of the design to
+use, which may either be a design's primary name or any of its alias names.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-e \fIeol\fP
+Override line terminator.
+.I eol
+can be
+.I CR\fP,
+.I LF\fP, or
+.I CRLF\fP.
+The default is to use the system-specific line terminator, which means
+.I CRLF
+on Windows, and
+.I LF
+otherwise. This option should only be used in an emergency, because normally
+the system-specific line terminator will be just fine. This option is
+considered experimental, and may go away in a future version of
+.I boxes\fP.
+Let us know in <URL:https://github.com/ascii-boxes/boxes/issues/60> if you
+think we should keep it.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-f \fIstring\fP
+Use alternate config file. The one argument of this option is the name of a
+valid
+.I boxes
+config file. The argument of
+.B \-f
+can also be a directory which contains a configuration file. More information
+on this topic below in the CONFIGURATION FILE section.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-\-help
+.TQ
+.B \-h
+Print usage information.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-i \fIstring\fP
+Indentation mode. Possible arguments are
+.I text
+(indent text inside of box),
+.I box
+(indent box, not text inside of box), or
+.I none
+(throw away indentation). Arguments may be abbreviated. The default is
+.I box\fP.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-k \fIbool\fP
+Kill leading/trailing blank lines on removal. The value of
+.I bool
+is either
+.I true
+or
+.I false\fP.
+This option only takes effect in connection with
+.B \-r\fP.
+If set to
+.I true\fP,
+leading and trailing blank lines will be removed from the
+output. If set to
+.I false\fP,
+the entire content of the former box is returned.
+The default is
+.I false\fP,
+if both the top and the bottom part of the box are open, as is the case with
+most regional comments. If the box's design defines a top part or a bottom
+part, the default is
+.I true\fP.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-l
+(ell) List designs. Produces a listing of all available box designs in the
+config file, along with a sample box and information about its creator.
+Also checks the syntax of the entire config file. If used together with
+.B \-d\fP,
+displays detailed information about the specified design.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-m
+Mend box. This removes a (potentially broken) box as with
+.B \-r\fP,
+and redraws it afterwards. The mended box is drawn according to the
+options given. This may be important to know when it comes to restoring
+padding, indentation, etc. for the mended box. Implies
+.B \-k
+.I false\fP.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-n \fIencoding\fP
+Character encoding. Overrides the character encoding of the input and output
+text. Choose from the list shown by \fIiconv -l\fP. If an invalid character
+encoding is specified here, \fIUTF-8\fP is used as a fallback. The default
+is to use the system encoding, which is normally the best course of action.
+So don't specify this option unless you have to.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-p \fIstring\fP
+Padding. Specify padding in spaces around the input text block for all
+sides of the box. The argument string may not contain whitespace and must
+consist of a combination of the following characters, each followed by a
+number indicating the padding in spaces:
+.br
+.I a
+\- (all) give padding for all sides at once
+.br
+.I h
+\- (horiz) give padding for both horizontal sides
+.br
+.I v
+\- (vertical) give padding for both vertical sides
+.br
+.I b
+\- (bottom) give padding for bottom (south) side
+.br
+.I l
+\- (left) give padding for left (west) side
+.br
+.I t
+\- (top) give padding for top (north) side
+.br
+.I r
+\- (right) give padding for right (east) side
+.br
+Example:
+.B \-p
+.I a\fP4\fIt\fP2
+would define the padding to be 4 characters on all sides, except for the
+top of the box, where the input text block will be only 2 lines away from
+the box.
+.br
+By default, unless specified otherwise in the config file, no padding is
+used.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-q \fIquery\fP
+Query designs by tag. In contrast to
+.B \-l\fP,
+this will only print the matching design names. This option is normally used
+stand-alone; if used in combination with other options, behavior is undefined.
+The
+.I query
+argument is a comma-separated list of tags which can be present on a design
+in order to match. A tag may optionally be prefixed with
+.I \+
+in order to require that it be present, or with
+.I \-
+in order to exclude designs which have that tag. Each tag can only occur once
+per query.
+.br
+This option is intended for use by scripts. Alias names are printed below
+their primary design name, and postfixed with
+.I (alias)\fP.
+.br
+Example:
+.I boxes -q programming,-comment
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-r
+Remove an existing box. Which design to use is detected automatically. In
+order to save time or in case the detection does not decide correctly, combine
+with
+.B \-d
+to specify the design. The default is to draw a new box.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-s \fIwidth\fBx\fIheight
+Box size. This option specifies the desired box size in units of columns
+(for width) and lines (for height).
+If only a single number is given as argument, this number specifies the
+desired box width. A single number prefixed by 'x' specifies only the box
+height.  The actual resulting box size may vary depending on the individual
+shape sizes of the chosen design. Also, other command line options may
+influence the box size (such as
+.B \-p\fP).
+.br
+By default, the smallest possible box is created around the text.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-t \fIstring\fP
+Tab handling. This option controls how tab characters in the input text are
+handled. The option string must always begin with a
+.I uint
+number indicating the distance between tab stops. It is important that this
+value be set correctly, or tabulator characters will upset your input text.
+The correct tab distance value depends on the settings used for the text
+you are processing. A common value is 8.
+.br
+Immediately following the tab distance, an optional character can be appended,
+telling
+.I boxes
+how to treat the leading tabs. The following options are available:
+.br
+.B e
+\- expand tabs into spaces
+.br
+.B k
+\- keep tabs as close to what they were as possible
+.br
+.B u
+\- unexpand tabs. This makes
+.I boxes
+turn as many spaces as possible into tabs.
+.br
+
+In order to maintain backwards compatibility, the
+.B \-t
+.I string
+can be just a number. In that case,
+.B e
+is assumed for tab handling, which removes all tabs and replaces them with
+spaces. The factory default for the
+.B \-t
+option is simply 8, which is just such a case.
+.br
+For example, you could specify
+.B \-t \fP4u
+in order to have your leading tabs unexpanded. In the box content, tabs are
+always converted into spaces. The tab distance in this example is 4.
+.\" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+.TP 0.6i
+.B \-v
+Print out current version number.
+.\" =======================================================================
+.SH CONFIGURATION FILE
+.I Boxes
+will look for the configuration file in several places, some of which are
+given by the XDG specification.
+.TP 0.6i
+\fB1.\fP \fI\-f\fP option [file or dir]
+When a configuration file is specified on the command line, we will use that. The
+.B \-f
+option can also specify a directory. Any location specified via
+.B \-f
+must exist, or
+.I boxes
+will terminate with an error.
+.TP 0.6i
+\fB2.\fP \fIBOXES\fP environment variable [file or dir]
+If no config file is specified on the command line,
+.I boxes
+will check for the BOXES environment variable, which may contain a filename or
+directory to use. Any location specified via the BOXES environment variable
+must exist, or
+.I boxes
+will terminate with an error.
+.TP 0.6i
+\fB3.\fP \fI$HOME\fP [dir]
+.TQ
+\fB4.\fP \fI$XDG_CONFIG_HOME/boxes\fP [dir]
+.TQ
+\fB5.\fP \fI$HOME/.config/boxes\fP [dir]
+.TQ
+\fB6.\fP \fI--GLOBALCONF--\fP [file]
+.TQ
+\fB7.\fP \fI/etc/xdg/boxes\fP [dir]
+.TQ
+\fB8.\fP \fI/usr/local/share/boxes\fP [dir]
+.TQ
+\fB9.\fP \fI/usr/share/boxes\fP [dir]
+Either one of these last two directory locations might have the same name as the
+global config file from \fB6\fP. That's fine. It just means that we first
+look for a file of that name, and then for a directory containing the file.
+.P
+The XDG environment variable \fIXDG_CONFIG_DIRS\fP is not supported. However,
+its default value is supported via steps \fB8\fP and \fB9\fP above.
+.TP 0.6i
+In the above list, whenever a step is designated with [dir], the following file names will be found, in this order:
+.br
+\fB1.\fP .boxes
+.br
+\fB2.\fP box-designs
+.br
+\fB3.\fP boxes-config
+.br
+\fB4.\fP boxes
+.LP
+As soon as the first valid file is found, we use that and stop the search.
+.P
+The recommended location for a user-specific configuration file is
+\fI$HOME/.boxes\fP or \fI$HOME/.config/boxes/.boxes\fP. A global
+configuration file should be located at \fI--GLOBALCONF--\fP. But all of the
+other locations are fully supported, too.
+.P
+The syntax of
+.I boxes
+config files is described on the website at
+<URL:https://boxes.thomasjensen.com/config-syntax.html>.
+.\" =======================================================================
+.SH EXAMPLES
+Examples on how to invoke
+.I boxes
+may be found on the website at
+<URL:https://boxes.thomasjensen.com/examples.html>.
+.br
+Try
+.P
+\fIecho "Good Bye World!" | boxes -d nuke\fP
+.P
+.I Boxes
+also combines nicely with other tools. Try
+.P
+\fIfiglet "boxes . . . !" | lolcat -f | boxes -d unicornthink\fP
+.\" =======================================================================
+.SH AVAILABILITY
+The
+.I boxes
+website is <URL:https://boxes.thomasjensen.com/>. It contains a number
+of examples illustrating this manual page as well as more in\-depth
+documentation.
+.\" =======================================================================
+.SH AUTHOR
+.I Boxes
+was made by Thomas Jensen and the \fIboxes\fP contributors. It has been
+lovingly maintained since 1999.
+.br
+For a full list of contributors, see
+.br
+<URL:https://boxes.thomasjensen.com/team.html#contributors>
+.br
+and <URL:https://github.com/ascii-boxes/boxes/graphs/contributors>.
+.br
+Please refer to the
+.I boxes
+website for the maintainer's current email address.
+.\" =======================================================================
+.SH VERSION
+This is
+.I boxes
+version --BVERSION--.
+.\" =======================================================================
+.SH LICENSE
+.I boxes
+is free software under the terms of the GNU General Public License,
+version 2. Details in the LICENSE file:
+<URL:https://raw.githubusercontent.com/ascii-boxes/boxes/v--BVERSION--/LICENSE>
+.\" =======================================================================
+.SH ENVIRONMENT
+.I Boxes
+recognizes the following environment variables:
+.HP 0.6i
+BOXES
+.br
+Absolute path of the
+.I boxes
+configuration file. If this is specified, it must refer to an existing file
+or directory.
+.HP 0.6i
+HOME
+.br
+The user's home directory.
+.TP 0.6i
+XDG_CONFIG_HOME
+The root of the configuration file location as per the XDG specification.
+.\" =======================================================================
+.SH "SEE ALSO"
+.BR figlet (6),
+.BR iconv (1),
+.BR lolcat (6)

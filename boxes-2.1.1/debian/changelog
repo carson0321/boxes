@@ -1,0 +1,348 @@
+boxes (2.1.1-2) unstable; urgency=medium
+
+  * debian/copyright: Clarify upstream copyright stanza.
+    - Update copyright information according to current upstream files.
+    - Refer to GPL-2 only for the upstream files.
+  * Fix quoting of closing comment tags in config
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 12 Dec 2021 13:30:21 +0100
+
+boxes (2.1.1-1) unstable; urgency=medium
+
+  * New upstream version 2.1.1
+  * Update copyright years for upstream files
+  * Add Build-Depends on libunistring-dev
+  * Add Build-Depends on libpcre2-dev
+  * Refresh "Change default config path for Debian"
+  * Drop "Don't strip boxes binary already in Makefile"
+  * Add Build-Depends on xxd used in upstream testsuite
+  * debian/control: Wrap and sort fields
+  * d/tests/control: smoke-test: Add xxd to Depends
+  * d/tests/control: smoke-test: Adapt replacement in testrunner script to use
+    installed boxes binary
+  * dh_install: Install boxes binary from the new temporary build directory
+  * d/tests/smoke-test: Copy installed boxes-config to run the tests
+  * debian/copyright: Drop superfluous file pattern stanza (files dropped
+    upstream)
+  * debian/upstream/metadata: Remove obsolete field Homepage
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 12 Dec 2021 09:12:08 +0100
+
+boxes (1.3-2) unstable; urgency=medium
+
+  [ Salsa Pipeline ]
+  * Update salsa CI pipeline
+
+  [ Jenkins ]
+  * Update watch file format version to 4.
+  * Bump debhelper from old 12 to 13.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository-Browse.
+  * Update pattern for GitHub archive URLs from /<org>/<repo>/tags
+    page/<org>/<repo>/archive/<tag> -> /<org>/<repo>/archive/refs/tags/<tag>.
+  * Remove obsolete field Name from debian/upstream/metadata (already present
+    in machine-readable debian/copyright).
+  * Update standards version to 4.5.1, no changes needed.
+  * Replace use of deprecated $ADTTMP with $AUTOPKGTEST_TMP.
+
+  [ Salvatore Bonaccorso ]
+  * Declare compliance with Debian policy 4.6.0
+  * Update copyright years for debian/* packaging files
+  * Rename Salsa CI configuration file to debian/salsa-ci.yml
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 11 Dec 2021 15:30:37 +0100
+
+boxes (1.3-1) unstable; urgency=medium
+
+  * New upstream version 1.3
+  * Update copyright years for debian/* packaging files
+  * Refresh default-GLOBALCONF-for-Debian.patch
+  * Refresh do-not-strip-boxes-binary-by-default.patch
+  * Drop spelling-error-in-manpage.patch (applied upstream)
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Wed, 27 Feb 2019 06:55:46 +0100
+
+boxes (1.2-4) unstable; urgency=medium
+
+  * Add an initial Gitlab CI config file
+  * debian/.gitlab-ci.yml: Update image used for Gitlab CI
+  * Update .gitlab-ci.yml based on Salsa CI Team's template
+  * GitLab CI/Lintian: install dpkg-dev, that ships dpkg-architecture, needed
+    to run some Lintian checks
+  * Replace home-made GitLab CI with the standard Salsa pipeline
+  * Bump Debhelper compat level to 12
+  * Declare compliance with Debian policy 4.3.0
+  * Inject additional CFLAGS from dpkg-buildflags into build.
+    The project uses a custom approach to pass additional CFLAGS for the
+    build via the CFLAGS_ADDTL variable.
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Fri, 28 Dec 2018 17:03:32 +0100
+
+boxes (1.2-3) unstable; urgency=medium
+
+  * Update Vcs-* fields for switch to salsa.debian.org
+  * Bump Debhelper compat level to 11
+  * Use HTTPS transport protocol for Homepage URL
+  * debian/copyright: Use HTTPS transport protocol for Source URL
+  * Use HTTPS transport protocol in debian/watch URL
+  * debian/patches/*: Use HTTPS transport protocol for Bug-Debian URLs
+  * Update copyright years for debian/* packaging files
+  * Set Rules-Requires-Root to no
+  * Add spelling-error-in-manpage.patch patch
+  * Declare compliance with Debian policy 4.1.3
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 11 Mar 2018 11:21:59 +0100
+
+boxes (1.2-2) unstable; urgency=medium
+
+  * Upload to unstable
+  * Use HTTP transport protocol for specification URL of copyright format
+  * Declare compliance with Debian policy 4.0.0
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Wed, 21 Jun 2017 10:50:44 +0200
+
+boxes (1.2-1) experimental; urgency=medium
+
+  * New upstream version 1.2
+  * Refresh default-GLOBALCONF-for-Debian.patch patch
+  * Drop patches applied upstream
+  * Update copyright years for debian/* packaging files
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Mon, 24 Apr 2017 16:07:36 +0200
+
+boxes (1.1.2-5) unstable; urgency=medium
+
+  * debian/control: Use HTTPS transport protocol for Vcs-Git URI
+  * Add basic autopkgtests running upstream testsuite against
+    installed binary
+  * Update copyright years for debian/* packaging files
+  * Declare compliance with Debian policy 3.9.8
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Fri, 08 Apr 2016 14:47:50 +0200
+
+boxes (1.1.2-4) unstable; urgency=medium
+
+  * Enable emacs autoloads for the commands in boxes.el.
+    Thanks to Kevin Ryde <user42_kevin@yahoo.com.au> (Closes: #807436)
+  * boxes.el: Fix invalid defvar initialization that now errors.
+    Thanks to Kevin Ryde <user42_kevin@yahoo.com.au> (Closes: #807153)
+  * Fix problems with boxes.el in xemacs.
+    Removes the 6th arg to shell-command-on-region as it is not necessary
+    and does not exist in older versions of xemacs.
+    Thanks to Kevin Ryde <user42_kevin@yahoo.com.au> (Closes: #807439)
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Tue, 22 Dec 2015 16:45:57 +0100
+
+boxes (1.1.2-3) unstable; urgency=medium
+
+  * Add 0001-Properly-quote-argument-to-echo-containing-in-Makef.patch.
+    Arguments to echo were not quoted in src/Makefile causing that only a
+    empty line was prepended to lex.yy.c and thus the _GNU_SOURCE marco not
+    defined before using strdup.
+    Fixes "warning: implicit declaration of function 'strdup'".
+    Thanks to Sebastien Bacher <seb128@ubuntu.com> for the report.
+    (Closes: #793390)
+  * Update copyright years for debian/* packaging files
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Fri, 24 Jul 2015 13:13:15 +0200
+
+boxes (1.1.2-2) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 26 Apr 2015 11:08:00 +0200
+
+boxes (1.1.2-1) experimental; urgency=medium
+
+  * Imported Upstream version 1.1.2
+  * debian/watch: Add alternative location for watch new upstream releases.
+    Development moved to github and new upstream releases will most likely
+    be published there only. Add an alternative location to watch for new
+    upstream releases.
+  * Add basic debian/upstream/metadata information
+  * Refresh default-GLOBALCONF-for-Debian.patch patch
+  * Drop fix-FTBFS-on-GNU-kFreeBSD-GNU-Hurd.patch patch (adopted upstream)
+  * Refresh do-not-strip-boxes-binary-by-default.patch patch
+  * Drop copyright stanza for src/parser.h
+  * Install README.md to /usr/share/doc/boxes
+  * Install vim syntax file for boxes configuration file to examples
+  * Declare compliance with Debian policy 3.9.6
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Thu, 12 Feb 2015 13:01:55 +0100
+
+boxes (1.1.1-4) unstable; urgency=medium
+
+  * Add Vcs-Browser and Vcs-Git fields
+  * Wrap-and-sort fields in debian/control
+  * Update copyright years for debian/* packaging
+  * Declare compliance with Debian Policy 3.9.5
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 24 Aug 2014 09:10:10 +0200
+
+boxes (1.1.1-3) unstable; urgency=low
+
+  * Upload to unstable
+  * Bump copyright years for debian/* packaging files
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 05 May 2013 08:07:20 +0200
+
+boxes (1.1.1-2) experimental; urgency=low
+
+  * Correct License for src/regexp/{regexp,regsub}.c files.
+    Add missing license text for src/regexp/{regexp,regsub}.c files to
+    debian/copyright and correct License field.
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Tue, 18 Dec 2012 21:22:06 +0100
+
+boxes (1.1.1-1) experimental; urgency=low
+
+  * Imported Upstream version 1.1.1
+    + Includes new type by Karl E. Jorgensen <karl@jorgensen.com>
+      (Closes: #187078).
+  * Refresh default-GLOBALCONF-for-Debian.patch patch
+  * Drop fix-spelling-error-in-manpage.patch patch.
+    Patch was applied upstream.
+  * Drop fix-hyphen-used-as-minus-sign.patch patch.
+    Patch was applied upstream.
+  * Bump Standards-Version to 3.9.4
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 21 Oct 2012 18:15:44 +0200
+
+boxes (1.1-1) experimental; urgency=low
+
+  * Add debian/watch file to track new upstream releases
+  * Imported Upstream version 1.1 (Closes: #446102)
+  * New maintainer for boxes.
+    Add myself to debian/control Maintainer field. (Closes: #686997)
+  * Update debian/copyright file.
+    Update format to copyright-format 1.0 as released together with Debian
+    policy 3.9.3.
+    Add myself to copyright for debian/* packaging files.
+    Refer to Debian systems in general instead of only Debian GNU/Linux
+    systems.
+    Explicitly refer to GPL-2 license text in common-licenses.
+    Update copyright information for other included files: Add stanzas for
+    doc/boxes.el, src/misc/getopt.{c,h}, src/parser.{c,h} and
+    src/regexp/regexp.c.
+  * Drop debian/boxes-1.0.1.patch patch
+  * Convert to '3.0 (quilt)' source package format.
+  * Add default-GLOBALCONF-for-Debian.patch patch.
+    Change default configuration file path for Debian to
+    /etc/boxes/boxes-config.
+  * Add fix-FTBFS-on-GNU-kFreeBSD-GNU-Hurd.patch patch.
+    Add patch to fix FTBFS on GNU/kFreeBSD and GNU/Hurd. Add the patch to
+    debian/patches instead of patching directly the source now (as we
+    switched to '3.0 (quilt)' source package format.
+  * Simplify debian/rules to a tiny rules file.
+    Install boxes binary and default configuration file via dh_install.
+  * Bump Debhelper compat level to 9.
+    Add a debian/compat file and bump versioned Build-Depends on debhelper
+    to (>= 9).
+  * Add ${misc:Depends} to Depends in debian/control
+  * Add Homepage field to source package stanza in debian/control
+  * Install doc/boxes.el to site-lisp for emacs
+  * Add fix-spelling-error-in-manpage.patch patch.
+    Add small patch to fix a spelling error in manpage of boxes.1.
+  * Add fix-hyphen-used-as-minus-sign.patch patch.
+    Fix lintian warning 'hyphen-used-as-minus-sign'.
+  * Bump Standards-Version to 3.9.3
+  * Add do-not-strip-boxes-binary-by-default.patch patch.
+    Don't strip boxes binary already in Makefile and leave this to the
+    dh_strip invocation in debian/rules. (Closes: #436604)
+  * Lowercase capital letter at beginning of synopsis line
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 15 Sep 2012 17:24:17 +0200
+
+boxes (1.0.1a-2.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Use _GNU_SOURCE on GNU/kFreeBSD and GNU/Hurd, as suggested by Petr
+    Salinger, fixing FTBFS on those platforms (Closes: #401741).
+
+ -- Cyril Brulebois <kibi@debian.org>  Fri, 28 Aug 2009 05:07:07 +0200
+
+boxes (1.0.1a-2.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Adjust location for configuration file, it should be
+    /etc/boxes/boxes-config and not the directory /etc/boxes/
+    itself. (Closes: #374304, #384696)
+
+ -- Michael Prokop <mika@grml.org>  Sat, 20 Jan 2007 18:16:55 +0100
+
+boxes (1.0.1a-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Move configuration file to /etc (Closes: #374490)
+  * Add boxes-config to debian/examples
+
+ -- Julien Danjou <acid@debian.org>  Tue, 11 Jul 2006 13:56:12 +0200
+
+boxes (1.0.1a-2) unstable; urgency=low
+
+  * Global config is in /usr/share/boxes/. (Closes: #374304)
+
+ -- KELEMEN Peter <fuji@debian.org>  Sun, 18 Jun 2006 17:51:27 +0200
+
+boxes (1.0.1a-1) unstable; urgency=low
+
+  * Pristine source.
+  * Bumped Standards-Version: 3.7.2
+  * Bumped DH_COMPAT=4
+  * Assorted compile fixes. (Closes: #191178)
+  * New URL. (Closes: #348700)
+
+ -- KELEMEN Peter <fuji@debian.org>  Thu, 15 Jun 2006 14:40:16 +0200
+
+boxes (1.0.1-5) unstable; urgency=low
+
+  * Acknowledgning NMU bt Tore Anderson, thanks.
+  * debian/copyright
+    - Fixed URL.
+    - Fixed Upstream Authors.
+  * debian/control
+    - Standards-Version: 3.6.1
+    - Fixed Build-Depends: field.
+    - Fixed Maintainer: field.
+    - Fixed Description: field.
+
+ -- KELEMEN Péter <fuji@debian.org>  Sun, 15 Aug 2004 12:36:41 +0200
+
+boxes (1.0.1-4.1) unstable; urgency=low
+
+  * NMU (sponsored by joeyh)
+  * Build-Depend on flex-old instead of flex, closes: #191187.
+
+ -- Tore Anderson <tore@linpro.no>  Sat, 12 Jul 2003 21:10:04 +0200
+
+boxes (1.0.1-4) unstable; urgency=MEDIUM
+
+  * Modernized packaging (debhelper v3).
+  * (debian/control) Bumped Standards-Version: field to 3.5.6.
+  * #define _GNU_SOURCE decision based on #defined __GNUC__. (Closes: #106761)
+  * /usr/share/boxes/boxes: Removed bogus test designs. (Closes: #96301)
+
+ -- KELEMEN Peter <fuji@debian.org>  Fri, 19 Apr 2002 00:18:27 +0200
+
+boxes (1.0.1-3) unstable; urgency=low
+
+  * Fixed Build-Depends: *again*. (Closes: #95073)
+
+ -- KELEMEN Peter <fuji@debian.org>  Tue, 24 Apr 2001 13:27:37 +0200
+
+boxes (1.0.1-2) unstable; urgency=low
+
+  * Fixed Build-Depends:. (Closes: #70199)
+
+ -- KELEMEN Peter <fuji@debian.org>  Sun, 22 Apr 2001 00:45:43 +0200
+
+boxes (1.0.1-1) unstable; urgency=low
+
+  * New Upstream Release.
+
+ -- KELEMEN Peter <fuji@debian.org>  Wed, 26 Apr 2000 17:54:54 +0200
+
+boxes (1.0-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- KELEMEN Peter <fuji@debian.org>  Tue, 31 Aug 1999 21:57:17 +0200

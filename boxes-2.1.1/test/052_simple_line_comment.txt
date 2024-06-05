@@ -1,0 +1,16 @@
+:ARGS
+-c #
+:INPUT
+a
+
+bbb
+
+
+:OUTPUT-FILTER
+:EXPECTED
+# a
+#
+# bbb
+#
+#
+:EOF

@@ -1,0 +1,14 @@
+:ARGS
+-t 4k
+:INPUT
+    XXXXXX
+	XXXXXX
+    XXXXXX
+:OUTPUT-FILTER
+:EXPECTED
+    /**********/
+    /* XXXXXX */
+	/* XXXXXX */
+    /* XXXXXX */
+    /**********/
+:EOF

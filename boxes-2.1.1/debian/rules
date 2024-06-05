@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+
+export CFLAGS_ADDTL+=$(shell dpkg-buildflags --get CFLAGS)
+
+%:
+	dh $@

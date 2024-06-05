@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+TEMP=${AUTOPKGTEST_TMP:-${TMPDIR:-/tmp}}
+TDIR=$(mktemp -d $TEMP/smokeXXXXXX)
+TESTRUNNER='testrunner.sh'
+
+# create temporary directory
+mkdir -p ${TDIR}
+
+# copy testfiles
+cp -a test ${TDIR}
+
+# copy installed /etc/boxes/boxes-config and use it in
+# tests
+cp -a /etc/boxes/boxes-config ${TDIR}
+
+# change directory to temporary test directory
+cd ${TDIR}/test
+
+# replace variables for binary and config to
+# actually test the installed boxes binary
+sed -i -e 's|boxesBinary=../out/boxes$|boxesBinary=/usr/bin/boxes|g' ${TESTRUNNER}
+
+# run the testrunner
+./${TESTRUNNER} -suite

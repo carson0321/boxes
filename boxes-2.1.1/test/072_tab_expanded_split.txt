@@ -1,0 +1,13 @@
+:ARGS
+:INPUT
+    XXXXXX
+	XXXXXX
+    XXXXXX
+:OUTPUT-FILTER
+:EXPECTED
+    /**************/
+    /* XXXXXX     */
+    /*     XXXXXX */
+    /* XXXXXX     */
+    /**************/
+:EOF

@@ -1,0 +1,14 @@
+:ARGS
+-t 8u
+:INPUT
+        XXXXXX
+	XXX	XXX
+        XXXXXX
+:OUTPUT-FILTER
+:EXPECTED
+	/***************/
+	/* XXXXXX      */
+	/* XXX     XXX */
+	/* XXXXXX      */
+	/***************/
+:EOF

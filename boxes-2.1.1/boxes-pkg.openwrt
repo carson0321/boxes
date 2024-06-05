@@ -1,0 +1,62 @@
+#
+# boxes - Command line filter to draw/remove ASCII boxes around text
+# Copyright (c) 1999-2021 Thomas Jensen and the boxes contributors
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License, version 2, as published
+# by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+#____________________________________________________________________________
+#
+#   File:           $(TOPDIR)/feeds/packages/utils/boxes/Makefile
+#   Date created:   2014-09-12 23:28
+#   Author:         Lu Weifeng <lyredsoft@gmail.com>
+#   Usage:
+# +-------------------------------------------------------------------------+
+# |$cd $(TOPDIR)                                                            |
+# |$./scripts/feeds update -i                                               |
+# |$./scripts/feeds install boxes                                           |
+# |$apt-get install binutils-multiarch                                      |
+# |$make package/boxes/compile package/index                                |
+# |$scp  $(TOPDIR)/bin/ar71xx/packages/boxes_1.1-1_ar71xx.ipk  openwrt:/tmp/|
+# |$opkg install --force-depends /tmp/boxes_1.1-1_ar71xx.ipk                |
+# +-------------------------------------------------------------------------+
+#============================================================================
+
+
+include $(TOPDIR)/rules.mk
+PKG_NAME:=boxes
+PKG_VERSION:=2.1.1
+PKG_RELEASE:=1
+PKG_BUILD_DIR:=$(PKG_NAME)-$(PKG_VERSION).$(PKG_RELEASE)
+
+
+PKG_SOURCE:=v2.1.1.tar.gz
+PKG_SOURCE_URL:=https://github.com/ascii-boxes/boxes/archive/refs/tags/
+
+include $(INCLUDE_DIR)/package.mk
+define Package/boxes
+	SECTION:=utils
+	CATEGORY:=Utilities
+	TITLE:=HW
+endef
+define Package/boxes/description
+boxes
+endef
+define Package/boxes/Build/Compile
+	$(MAKE) -C $(PKG_BUILD_DIR) boxes
+endef
+define Package/boxes/install
+	$(INSTALL_DIR) $(1)/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/boxes $(1)/bin/
+
+endef
+$(eval $(call BuildPackage,boxes))

@@ -1,0 +1,213 @@
+From: Thomas Jensen <boxes@thomasjensen.com>
+Date: Fri, 18 Jun 2021 20:54:21 +0200
+Subject: Fix quoting of closing comment tags in config
+Origin: https://github.com/ascii-boxes/boxes/commit/4fc33e7cee5860a482338389c91548e776de2d24
+
+---
+ boxes-config                      | 93 ++++++++++++++++---------------
+ test/169_peek_escape_comments.txt | 19 +++++++
+ 2 files changed, 67 insertions(+), 45 deletions(-)
+ create mode 100644 test/169_peek_escape_comments.txt
+
+diff --git a/boxes-config b/boxes-config
+index 7d14cc67503c..9f32e48b1fa8 100644
+--- a/boxes-config
++++ b/boxes-config
+@@ -297,8 +297,8 @@ shapes {
+     e ("*/")
+ }
+ 
+-replace "\\*/" with "*\\/"               # quote closing comment tags
+-reverse "\\*\\\\/" to "*/"
++replace "\\*\\/" with "*\\\\/"               # quote closing comment tags
++reverse "\\*\\\\/" to "*\\/"
+ 
+ Padding { h 1 }
+ 
+@@ -335,8 +335,8 @@ shapes {
+ padding { left 2 }
+ 
+ delimiter ?"
+-replace "\*/" with "*\/"                 # quote closing comment tags
+-reverse "\*\\/" to "*/"
++replace "\*\/" with "*\\/"                 # quote closing comment tags
++reverse "\*\\/" to "*\/"
+ 
+ elastic (s, w)
+ 
+@@ -371,8 +371,8 @@ shapes {
+ padding { left 1 }
+ 
+ delimiter ?"
+-replace "\*/" with "*\/"                 # quote closing comment tags
+-reverse "\*\\/" to "*/"
++replace "\*\/" with "*\\/"                 # quote closing comment tags
++reverse "\*\\/" to "*\/"
+ 
+ elastic (s, w, n)
+ 
+@@ -408,7 +408,7 @@ shapes {
+ padding { h 1 }
+ 
+ delim ?"
+-replace "-->" with "-\-\>"
++replace "-->" with "-\\-\\>"
+ reverse "-\\-\\>" to "-->"
+ 
+ elastic (n,e,s,w)
+@@ -419,6 +419,40 @@ END html
+ # ============================================================================
+ 
+ 
++BOX html-cmt
++
++author   "Thomas Jensen"
++designer "(public domain)"
++revision "1.0"
++revdate  "June 17, 1999 (Thursday, 19:59h)"
++created  "June 17, 1999 (Thursday, 19:59h)"
++tags     "simple, programming, comment"
++
++sample
++    <!--                                     -->
++    <!-- regular comments used in HTML files -->
++    <!--                                     -->
++ends
++
++shapes {
++     w ("<!--")
++     e ("-->")
++}
++
++elastic (e, w)
++
++padding { h 1 }
++
++delim ?"
++replace "-->" with "-\\-\\>"
++reverse "-\\-\\>" to "-->"
++
++END html-cmt
++
++
++# ============================================================================
++
++
+ BOX shell
+ 
+ author   "Thomas Jensen"
+@@ -1312,8 +1346,8 @@ shapes {
+     se  ("/")
+ }
+ 
+-replace "\\*/" with "*\\/"               # quote closing comment tags
+-reverse "\\*\\\\/" to "*/"
++replace "\\*\\/" with "*\\\\/"               # quote closing comment tags
++reverse "\\*\\\\/" to "*\\/"
+ 
+ elastic (n,e,s,w)
+ 
+@@ -1382,34 +1416,6 @@ END pound-cmt
+ # ============================================================================
+ 
+ 
+-BOX html-cmt
+-
+-author   "Thomas Jensen"
+-designer "(public domain)"
+-revision "1.0"
+-revdate  "June 17, 1999 (Thursday, 19:59h)"
+-created  "June 17, 1999 (Thursday, 19:59h)"
+-tags     "simple, programming, comment"
+-
+-sample
+-    <!--                                     -->
+-    <!-- regular comments used in HTML files -->
+-    <!--                                     -->
+-ends
+-
+-shapes {
+-     w ("<!-- ")
+-     e (" -->")
+-}
+-
+-elastic (e,w)
+-
+-END html-cmt
+-
+-
+-# ============================================================================
+-
+-
+ BOX vim-cmt
+ 
+ author   "Thomas Jensen"
+@@ -1665,8 +1671,8 @@ shapes {
+ }
+ 
+ delim ?"
+-replace "\*/" with "*\/"               # quote closing comment tags
+-reverse "\*\\/" to "*/"
++replace "\*\/" with "*\\/"               # quote closing comment tags
++reverse "\*\\/" to "*\/"
+ 
+ padding {
+     horiz 1
+@@ -2715,8 +2721,8 @@ shapes {
+ elastic (n, e, s, w)
+ 
+ delim ?"
+-replace "\*/" with "*\/"
+-reverse "\*\\/" to "*/"
++replace "\*\/" with "*\\/"
++reverse "\*\\/" to "*\/"
+ 
+ padding {
+     horiz 1
+@@ -2742,7 +2748,7 @@ sample
+     """""""""""""""""""""""""""""""""""""""""""""""""""""""
+ ends
+ 
+-delim ?'
++delim \'
+ 
+ shapes {
+     nw ('"') n ('"') ne ('"')
+@@ -2750,9 +2756,6 @@ shapes {
+     sw ('"') s ('"') se ('"')
+ }
+ 
+-replace '"' with '\"'               # quote closing comment tags
+-reverse '\\\"' to '"'
+-
+ padding {
+     horiz 1
+ }
+diff --git a/test/169_peek_escape_comments.txt b/test/169_peek_escape_comments.txt
+new file mode 100644
+index 000000000000..e812427fe4fc
+--- /dev/null
++++ b/test/169_peek_escape_comments.txt
+@@ -0,0 +1,19 @@
++:DESC
++Tests that the 'peek' box design properly escapes closing comment tags.
++
++:ARGS
++-d peek -p h2
++:INPUT
++foo();
++bar(); /* a comment */
++baz();
++:OUTPUT-FILTER
++:EXPECTED
++/*       _\|/_
++         (o o)
++ +----oOO-{_}-OOo------------+
++ |  foo();                   |
++ |  bar(); /* a comment *\/  |
++ |  baz();                   |
++ +--------------------------*/
++:EOF
+-- 
+2.34.1
+

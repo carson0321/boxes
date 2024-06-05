@@ -1,0 +1,24 @@
+Source: boxes
+Section: text
+Priority: optional
+Maintainer: Salvatore Bonaccorso <carnil@debian.org>
+Standards-Version: 4.6.0
+Build-Depends:
+ bison,
+ debhelper-compat (= 13),
+ flex,
+ libpcre2-dev,
+ libunistring-dev,
+ xxd <!nocheck>
+Vcs-Browser: https://salsa.debian.org/carnil/boxes
+Vcs-Git: https://salsa.debian.org/carnil/boxes.git
+Homepage: https://boxes.thomasjensen.com/
+Rules-Requires-Root: no
+
+Package: boxes
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: textmode box- and comment drawing filter
+ Boxes is extremely configurable filter for adding and removing ASCII art
+ (comments, for example) around chunks of text.  Most modern text editors
+ support filtering text through external filters.  Boxes is such a filter.

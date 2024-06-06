@@ -1,6 +1,3 @@
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA512
-
 Format: 3.0 (quilt)
 Source: boxes
 Binary: boxes
@@ -25,18 +22,3 @@ Checksums-Sha256:
 Files:
  c0eb9bbf015fba3b8203d703760766a1 186136 boxes_2.1.1.orig.tar.xz
  3b795b8ef65c9fdd5ace4f3c961797a1 8112 boxes_2.1.1-2ubuntu1.debian.tar.xz
-
------BEGIN PGP SIGNATURE-----
-
-iQGzBAEBCgAdFiEEGu0xAP6ht1WSidhawRJFaVdnHpsFAmZhs20ACgkQwRJFaVdn
-HpuPbgv+P+6jf3BVUDrLxzw+qa0tXhH9Zqtv7ax8ttuO0fqAHxVzAUvpyQP02rJM
-DnL+2T0+L7ym6jaaOMSGnYhgGdJImAFip67yWT8gjyng/G9SzaRSOf2PGJtRV4Kn
-m0/xkd4GHY06gZNyhGUCCm7+dkRHmHVHqtSws3MYQJFZxm8l4vbxCBoQ/rEomekg
-Jv4m5E8R8xfdGp2+uD9XheC/VfU5nwW+XJwGY1K/e3E22WBqW3SqJVz070PD4M8h
-pckwJYEeHLaWFFhsPeYYaE8xmuhdsODifyJcnEPfdthr6doF5S58ycQHZv2jL0bn
-XFR6VJBfmWyFFxAwIlpVMiLsW06iO9sJ9VTkY8WGuj2tnTxyeorYUMFm62DqIycW
-gfGTGIOd0/yfZ0ohhGYi+mRwPEtUCl+xMoAO3b8lPMl4xPI6f/BXJjXXVHnZrLu4
-kZGcysSDCN+wmyWr3N0xUjh76oWAZnptjiEBVZGul8Xa98aBqoesl8yV4P1iO4xk
-JkAsARHg
-=L0Ua
------END PGP SIGNATURE-----

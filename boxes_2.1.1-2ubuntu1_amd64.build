@@ -1,0 +1,607 @@
+ dpkg-buildpackage -us -uc -ui
+dpkg-buildpackage: info: source package boxes
+dpkg-buildpackage: info: source version 2.1.1-2ubuntu1
+dpkg-buildpackage: info: source distribution jammy
+dpkg-buildpackage: info: source changed by carson <carson@carson-OptiPlex-7060>
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture amd64
+ debian/rules clean
+dh clean
+   dh_auto_clean
+	make -j12 clean
+make[1]: Entering directory '/home/carson/code/test/boxes/boxes-2.1.1'
+rm -f out/boxes.h tools/boxes.cfg tools/LICENSE.txt tools/boxes.exe tools/README*.md boxes.portable.*.nupkg
+rm -f doc/boxes.1 doc/boxes.1.raw.html doc/boxes.1.html
+make -C src clean
+make[2]: Entering directory '/home/carson/code/test/boxes/boxes-2.1.1/src'
+rm -rf ../out
+rm -f core parser.h boxes.h lex.yy.h
+make[2]: Leaving directory '/home/carson/code/test/boxes/boxes-2.1.1/src'
+make[1]: Leaving directory '/home/carson/code/test/boxes/boxes-2.1.1'
+   dh_clean
+ dpkg-source -b .
+dpkg-source: warning: Version number suggests Ubuntu changes, but Maintainer: does not have Ubuntu address
+dpkg-source: warning: Version number suggests Ubuntu changes, but there is no XSBC-Original-Maintainer field
+dpkg-source: info: using source format '3.0 (quilt)'
+dpkg-source: info: building boxes using existing ./boxes_2.1.1.orig.tar.xz
+dpkg-source: info: using patch list from debian/patches/series
+dpkg-source: info: building boxes in boxes_2.1.1-2ubuntu1.debian.tar.xz
+dpkg-source: info: building boxes in boxes_2.1.1-2ubuntu1.dsc
+ debian/rules binary
+dh binary
+   dh_update_autotools_config
+   dh_autoreconf
+   dh_auto_configure
+   dh_auto_build
+	make -j12 "INSTALL=install --strip-program=true"
+make[1]: Entering directory '/home/carson/code/test/boxes/boxes-2.1.1'
+mkdir out
+| For compilation info please refer to the boxes compilation FAQ
+sed -e 's/--BVERSION--/2.1.1/; s/--GLOBALCONF--/\/etc\/boxes\/boxes-config/' doc/boxes.1.in > doc/boxes.1
+| at https://boxes.thomasjensen.com/faq.html#q5
+sed -e 's/--BVERSION--/2.1.1 (24828ca-dirty)/; s/--GLOBALCONF--/\/etc\/boxes\/boxes-config/' src/boxes.in.h > out/boxes.h
+make -C src BOXES_PLATFORM=unix LEX=flex YACC=bison build
+make[2]: Entering directory '/home/carson/code/test/boxes/boxes-2.1.1/src'
+make -C ../out -f ../src/Makefile BOXES_PLATFORM=unix ALL_OBJ="parser.o lex.yy.o boxes.o cmdline.o discovery.o generate.o input.o list.o parsecode.o parsing.o query.o regulex.o remove.o shape.o tools.o unicode.o" \
+    CFLAGS_ADDTL="-O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security" STRIP=true flags_unix boxes
+make[3]: Entering directory '/home/carson/code/test/boxes/boxes-2.1.1/out'
+make[3]: Nothing to be done for 'flags_unix'.
+flex --header-file=lex.yy.h ../src/lexer.l
+bison --warnings=all --verbose --defines=parser.h --output=parser.c ../src/parser.y
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o parser.o parser.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o lex.yy.o lex.yy.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o boxes.o ../src/boxes.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o cmdline.o ../src/cmdline.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o discovery.o ../src/discovery.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o generate.o ../src/generate.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o input.o ../src/input.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o list.o ../src/list.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o parsecode.o ../src/parsecode.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o parsing.o ../src/parsing.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o query.o ../src/query.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o regulex.o ../src/regulex.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o remove.o ../src/remove.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o shape.o ../src/shape.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o tools.o ../src/tools.c
+gcc -I. -I../src -Wall -W -O -g -O2 -ffile-prefix-map=/home/carson/code/test/boxes/boxes-2.1.1=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c -o unicode.o ../src/unicode.c
+gcc  parser.o lex.yy.o boxes.o cmdline.o discovery.o generate.o input.o list.o parsecode.o parsing.o query.o regulex.o remove.o shape.o tools.o unicode.o -o boxes -lunistring -lpcre2-32
+lto-wrapper: warning: using serial compilation of 2 LTRANS jobs
+if [ "true" = "true" ] ; then strip boxes ; fi
+make[3]: Leaving directory '/home/carson/code/test/boxes/boxes-2.1.1/out'
+make[2]: Leaving directory '/home/carson/code/test/boxes/boxes-2.1.1/src'
+make[1]: Leaving directory '/home/carson/code/test/boxes/boxes-2.1.1'
+   dh_auto_test
+	make -j12 test
+make[1]: Entering directory '/home/carson/code/test/boxes/boxes-2.1.1'
+cd test; ./testrunner.sh -suite
+Running test case: 001_trivial.txt
+    Invoking: boxes 
+    OK
+Running test case: 002_trivial_10x5.txt
+    Invoking: boxes -s 10x5
+    OK
+Running test case: 003_no_config_file.txt
+    Invoking: boxes -f nonexistent
+    OK
+Running test case: 004_missing_option_argument.txt
+    Invoking: boxes -s
+    OK
+Running test case: 005_alignment_single_line_hlvt.txt
+    Invoking: boxes -s 15x5 -a hlvt
+    OK
+Running test case: 006_alignment_single_line_hlvc.txt
+    Invoking: boxes -s 15x5 -a hlvc
+    OK
+Running test case: 007_alignment_single_line_hlvb.txt
+    Invoking: boxes -s 15x5 -a hlvb
+    OK
+Running test case: 008_alignment_single_line_hcvt.txt
+    Invoking: boxes -s 15x5 -a hcvt
+    OK
+Running test case: 009_alignment_single_line_hcvc.txt
+    Invoking: boxes -s 15x5 -a hcvc
+    OK
+Running test case: 010_alignment_single_line_hcvb.txt
+    Invoking: boxes -s 15x5 -a hcvb
+    OK
+Running test case: 011_alignment_single_line_hrvt.txt
+    Invoking: boxes -s 15x5 -a hrvt
+    OK
+Running test case: 012_alignment_single_line_hrvc.txt
+    Invoking: boxes -s 15x5 -a hrvc
+    OK
+Running test case: 013_alignment_single_line_hrvb.txt
+    Invoking: boxes -s 15x5 -a hrvb
+    OK
+Running test case: 014_alignment_single_line_l.txt
+    Invoking: boxes -s 15x5 -a l
+    OK
+Running test case: 015_alignment_single_line_c.txt
+    Invoking: boxes -s 15x5 -a c
+    OK
+Running test case: 016_alignment_single_line_r.txt
+    Invoking: boxes -s 15x5 -a r
+    OK
+Running test case: 017_alignment_multiline_hlvtjl.txt
+    Invoking: boxes -s 15x7 -a hlvtjl
+    OK
+Running test case: 018_alignment_multiline_hlvtjc.txt
+    Invoking: boxes -s 15x7 -a hlvtjc
+    OK
+Running test case: 019_alignment_multiline_hlvtjr.txt
+    Invoking: boxes -s 15x7 -a hlvtjr
+    OK
+Running test case: 020_alignment_multiline_hlvcjl.txt
+    Invoking: boxes -s 15x7 -a hlvcjl
+    OK
+Running test case: 021_alignment_multiline_hlvcjc.txt
+    Invoking: boxes -s 15x7 -a hlvcjc
+    OK
+Running test case: 022_alignment_multiline_hlvcjr.txt
+    Invoking: boxes -s 15x7 -a hlvcjr
+    OK
+Running test case: 023_alignment_multiline_hlvbjl.txt
+    Invoking: boxes -s 15x7 -a hlvbjl
+    OK
+Running test case: 024_alignment_multiline_hlvbjc.txt
+    Invoking: boxes -s 15x7 -a hlvbjc
+    OK
+Running test case: 025_alignment_multiline_hlvbjr.txt
+    Invoking: boxes -s 15x7 -a hlvbjr
+    OK
+Running test case: 026_alignment_multiline_hcvtjl.txt
+    Invoking: boxes -s 15x7 -a hcvtjl
+    OK
+Running test case: 027_alignment_multiline_hcvtjc.txt
+    Invoking: boxes -s 15x7 -a hcvtjc
+    OK
+Running test case: 028_alignment_multiline_hcvtjr.txt
+    Invoking: boxes -s 15x7 -a hcvtjr
+    OK
+Running test case: 029_alignment_multiline_hcvcjl.txt
+    Invoking: boxes -s 15x7 -a hcvcjl
+    OK
+Running test case: 030_alignment_multiline_hcvcjc.txt
+    Invoking: boxes -s 15x7 -a hcvcjc
+    OK
+Running test case: 031_alignment_multiline_hcvcjr.txt
+    Invoking: boxes -s 15x7 -a hcvcjr
+    OK
+Running test case: 032_alignment_multiline_hcvbjl.txt
+    Invoking: boxes -s 15x7 -a hcvbjl
+    OK
+Running test case: 033_alignment_multiline_hcvbjc.txt
+    Invoking: boxes -s 15x7 -a hcvbjc
+    OK
+Running test case: 034_alignment_multiline_hcvbjr.txt
+    Invoking: boxes -s 15x7 -a hcvbjr
+    OK
+Running test case: 035_alignment_multiline_hrvtjl.txt
+    Invoking: boxes -s 15x7 -a hrvtjl
+    OK
+Running test case: 036_alignment_multiline_hrvtjc.txt
+    Invoking: boxes -s 15x7 -a hrvtjc
+    OK
+Running test case: 037_alignment_multiline_hrvtjr.txt
+    Invoking: boxes -s 15x7 -a hrvtjr
+    OK
+Running test case: 038_alignment_multiline_hrvcjl.txt
+    Invoking: boxes -s 15x7 -a hrvcjl
+    OK
+Running test case: 039_alignment_multiline_hrvcjc.txt
+    Invoking: boxes -s 15x7 -a hrvcjc
+    OK
+Running test case: 040_alignment_multiline_hrvcjr.txt
+    Invoking: boxes -s 15x7 -a hrvcjr
+    OK
+Running test case: 041_alignment_multiline_hrvbjl.txt
+    Invoking: boxes -s 15x7 -a hrvbjl
+    OK
+Running test case: 042_alignment_multiline_hrvbjc.txt
+    Invoking: boxes -s 15x7 -a hrvbjc
+    OK
+Running test case: 043_alignment_multiline_hrvbjr.txt
+    Invoking: boxes -s 15x7 -a hrvbjr
+    OK
+Running test case: 044_alignment_multiline_l.txt
+    Invoking: boxes -s 15x7 -a l
+    OK
+Running test case: 045_alignment_multiline_c.txt
+    Invoking: boxes -s 15x7 -a c
+    OK
+Running test case: 046_alignment_multiline_r.txt
+    Invoking: boxes -s 15x7 -a r
+    OK
+Running test case: 047_alignment_multiline_none.txt
+    Invoking: boxes -s 15x7
+    OK
+Running test case: 048_alignment_multiline_vertical_round_down.txt
+    Invoking: boxes -s 15x7 -a c
+    OK
+Running test case: 049_alignment_illegal_format.txt
+    Invoking: boxes -a mistake
+    OK
+Running test case: 050_alignment_multiline_nop1.txt
+    Invoking: boxes -s 11x5 -a c
+    OK
+Running test case: 051_alignment_multiline_nop2.txt
+    Invoking: boxes -s 11x5 -a hrvbjr
+    OK
+Running test case: 052_simple_line_comment.txt
+    Invoking: boxes -c #
+    OK
+Running test case: 053_size_25x10.txt
+    Invoking: boxes -s 25x10
+    OK
+Running test case: 054_size_vs_padding_1.txt
+    Invoking: boxes -s 10x5
+    OK
+Running test case: 055_size_vs_padding_2.txt
+    Invoking: boxes -s 9x5
+    OK
+Running test case: 056_input_vs_size.txt
+    Invoking: boxes -s 2x2 -p a2
+    OK
+Running test case: 057_size_vs_padding_2.txt
+    Invoking: boxes -p v1h10 -s 30x6
+    OK
+Running test case: 058_size_minimum_by_design.txt
+    Invoking: boxes -d diamonds -s 15x7
+    OK
+Running test case: 059_size_same_as_design.txt
+    Invoking: boxes -d diamonds -s 40x16
+    OK
+Running test case: 060_size_1_extra_line.txt
+    Invoking: boxes -d diamonds -s 40x17
+    OK
+Running test case: 061_size_1_extra_line_and_1_extra_column.txt
+    Invoking: boxes -d diamonds -s 41x17
+    OK
+Running test case: 062_size_with_indent.txt
+    Invoking: boxes -s 15x7
+    OK
+Running test case: 063_size_with_indent_and_padding.txt
+    Invoking: boxes -s 15x7 -p l2
+    OK
+Running test case: 064_size_with_indent_and_too_much_padding.txt
+    Invoking: boxes -s 15x7 -p l10
+    OK
+Running test case: 065_size_missing_argument.txt
+    Invoking: boxes -s
+    OK
+Running test case: 066_size_invalid_spec.txt
+    Invoking: boxes -s -2x3
+    OK
+Running test case: 067_size_as_small_as_possible_vertical.txt
+    Invoking: boxes -s 0x1
+    OK
+Running test case: 068_size_single_argument.txt
+    Invoking: boxes -s 15
+    OK
+Running test case: 069_size_single_argument_x.txt
+    Invoking: boxes -s x7
+    OK
+Running test case: 070_size_as_small_as_possible_horiz.txt
+    Invoking: boxes -s 1x0
+    OK
+Running test case: 071_size_invalid_spec_0x0.txt
+    Invoking: boxes -s 0x0
+    OK
+Running test case: 072_tab_expanded_split.txt
+    Invoking: boxes 
+    OK
+Running test case: 073_tab_expanded_size4.txt
+    Invoking: boxes -t 4
+    OK
+Running test case: 074_tab_keep_size4.txt
+    Invoking: boxes -t 4k
+    OK
+Running test case: 075_tab_unexpand.txt
+    Invoking: boxes -t 4u
+    OK
+Running test case: 076_tab_keep_size4_withContent.txt
+    Invoking: boxes -t 4k
+    OK
+Running test case: 077_tab_unexpand_size8_withContent.txt
+    Invoking: boxes -t 8u
+    OK
+Running test case: 078_tab_unexpand_size8_withContent2.txt
+    Invoking: boxes -t 8u
+    OK
+Running test case: 079_tab_keep_size8.txt
+    Invoking: boxes -t 8k
+    OK
+Running test case: 080_tab_expand_size4.txt
+    Invoking: boxes -t 4
+    OK
+Running test case: 081_tab_unexpand_size4_fromNone.txt
+    Invoking: boxes -t 4u
+    OK
+Running test case: 082_tab_unexpand_size4_split.txt
+    Invoking: boxes -t 4u
+    OK
+Running test case: 083_list_design_info.txt
+    Invoking: boxes -l -d c
+    OK
+Running test case: 084_list_design_info_for_cmdline_definition.txt
+    Invoking: boxes -c # -l
+    OK
+Running test case: 095_ansi_basic.txt
+    Invoking: boxes 
+    OK
+Running test case: 096_ansi_within.txt
+    Invoking: boxes 
+    OK
+Running test case: 097_ansi_mixed.txt
+    Invoking: boxes 
+    OK
+Running test case: 098_ansi_mixed_indent.txt
+    Invoking: boxes 
+    OK
+Running test case: 099_ansi_align_left.txt
+    Invoking: boxes -al
+    OK
+Running test case: 100_ansi_align_center.txt
+    Invoking: boxes -ac
+    OK
+Running test case: 101_ansi_align_right.txt
+    Invoking: boxes -ar
+    OK
+Running test case: 102_ansi_size.txt
+    Invoking: boxes -s35x10
+    OK
+Running test case: 103_ansi_pad.txt
+    Invoking: boxes -pa5
+    OK
+Running test case: 104_ansi_lolcat.txt
+    Invoking: boxes -ar
+    OK
+Running test case: 105_ansi_lolcat_within_leading_space.txt
+    Invoking: boxes 
+    OK
+Running test case: 106_unicode_align_center.txt
+    Invoking: boxes -n UTF-8 -ac
+    OK
+Running test case: 107_unicode_align_left_lolcat.txt
+    Invoking: boxes -n UTF-8 -al
+    OK
+Running test case: 108_unicode_align_center_lolcat.txt
+    Invoking: boxes -n UTF-8 -ac
+    OK
+Running test case: 109_unicode_align_right_lolcat.txt
+    Invoking: boxes -n UTF-8 -ar
+    OK
+Running test case: 110_unicode_align_complex_lolcat.txt
+    Invoking: boxes -n UTF-8 -ahrvbjr -ph3 -sx26
+    OK
+Running test case: 111_manual_encoding_iso.txt
+    Invoking: boxes -ac -n ISO_8859-15
+    OK
+Running test case: 112_manual_encoding_invalid.txt
+    Invoking: boxes -n NON-EXISTENT
+    OK
+Running test case: 113_headline_ansi_unicode.txt
+    Invoking: boxes -n UTF-8 -d headline -p l3r1
+    OK
+Running test case: 114_headline_ansi_unicode_remove.txt
+    Invoking: boxes -n UTF-8 -d headline -p l3r2 -r
+    OK
+Running test case: 115_lots_of_lines.txt
+    Invoking: boxes 
+    OK
+Running test case: 116_lots_of_tabs.txt
+    Invoking: boxes 
+    OK
+Running test case: 117_unicode_ansi_mending.txt
+    Invoking: boxes -n UTF-8 -d diamonds -ac -m
+    OK
+Running test case: 118_unicode_ansi_align_center.txt
+    Invoking: boxes -n UTF-8 -d unicornsay -ac
+    OK
+Running test case: 119_unicode_ansi_align_right.txt
+    Invoking: boxes -n UTF-8 -d unicornsay -ar
+    OK
+Running test case: 120_parser_unterminated_string.txt
+    Invoking: boxes -f 120_parser_unterminated_string.cfg
+    OK
+Running test case: 121_remove_box_lolcat.txt
+    Invoking: boxes -r
+    OK
+Running test case: 122_no_config_file_dir.txt
+    Invoking: boxes -f .
+    OK
+Running test case: 123_config_file_xdg1.txt
+    export HOME="`pwd`/123_data"
+    Invoking: boxes 
+    OK
+Running test case: 124_config_file_xdg2.txt
+    export HOME="`pwd`/124_data/home" 
+    export XDG_CONFIG_HOME="`pwd`/124_data/xdg"
+    Invoking: boxes 
+    OK
+Running test case: 125_config_file_wrong_BOXES_var.txt
+    export BOXES=non-existent
+    Invoking: boxes 
+    OK
+Running test case: 126_config_file_xdg3.txt
+    export HOME="`pwd`/126_data/home" 
+    export XDG_CONFIG_HOME="`pwd`/126_data/xdg"
+    Invoking: boxes 
+    OK
+Running test case: 127_multiple_parent_configs.txt
+    Invoking: boxes -f 127_data/C.cfg -l
+    OK
+Running test case: 128_multiple_parent_configs_cycle.txt
+    Invoking: boxes -f 128_data/C.cfg -l
+    OK
+Running test case: 129_multiple_parent_configs_empty_base.txt
+    Invoking: boxes -f 129_data/D.cfg -l
+    OK
+Running test case: 130_multiple_parent_configs_inherited_design.txt
+    Invoking: boxes -f 130_data/B.cfg -d designA -p l1 -a vc
+    OK
+Running test case: 131_multiple_parent_configs_ref_after_broken.txt
+    Invoking: boxes -f 131_data/B.cfg -l
+    OK
+Running test case: 132_parent_configs_speedmode.txt
+    Invoking: boxes -f 132_data/B.cfg -avc -d designD
+    OK
+Running test case: 133_comments_in_strings.txt
+    Invoking: boxes -f 133_comments_in_strings.cfg
+    OK
+Running test case: 134_comments_in_sample.txt
+    Invoking: boxes -f 134_comments_in_sample.cfg -l
+    OK
+Running test case: 135_design_alias_by_design.txt
+    Invoking: boxes -f 135_design_alias_by_design.cfg -l -d design
+    OK
+Running test case: 136_design_alias_by_alias.txt
+    Invoking: boxes -f 136_design_alias_by_alias.cfg -p h3 -a vc -d alias3a
+    OK
+Running test case: 137_design_alias_no_accumulation.txt
+    Invoking: boxes -f 137_design_alias_no_accumulation.cfg -d alias3b -l
+    OK
+Running test case: 138_design_alias_duplicate_name.txt
+    Invoking: boxes -f 138_design_alias_duplicate_name.cfg -l
+    OK
+Running test case: 139_parent_config_without_file.txt
+    Invoking: boxes -f 139_parent_config_without_file.cfg -l
+    OK
+Running test case: 140_tag_query_normal.txt
+    Invoking: boxes -f 14x_tag_query.cfg -q tag1,tag2
+    OK
+Running test case: 141_tag_query_plus.txt
+    Invoking: boxes -f 14x_tag_query.cfg -q +tag1,tag2
+    OK
+Running test case: 142_tag_query_plus2.txt
+    Invoking: boxes -f 14x_tag_query.cfg -q +tag1,+tag3
+    OK
+Running test case: 143_tag_query_minus.txt
+    Invoking: boxes -f 14x_tag_query.cfg -q -tag1
+    OK
+Running test case: 144_tag_query_minus2.txt
+    Invoking: boxes -f 14x_tag_query.cfg -q -tag1,-tag2
+    OK
+Running test case: 145_tag_query_all.txt
+    Invoking: boxes -f 14x_tag_query.cfg -q (all)
+    OK
+Running test case: 146_tag_query_invalid.txt
+    Invoking: boxes -f 146_tag_query.cfg -q INVALID
+    OK
+Running test case: 147_tag_stats_list.txt
+    Invoking: boxes -f 14x_tag_query.cfg -l
+    OK
+Running test case: 148_tag_query_duplicate_expression.txt
+    Invoking: boxes -f 14x_tag_query.cfg -q -tag1,+tag1
+    OK
+Running test case: 149_tag_query_duplicate_expression2.txt
+    Invoking: boxes -f 14x_tag_query.cfg -q -tag1,tag1
+    OK
+Running test case: 150_tag_config_invalid_tags.txt
+    Invoking: boxes -f 150_tag_config_invalid_tags.cfg -l
+    OK
+Running test case: 151_tag_query_no_results.txt
+    Invoking: boxes -f 14x_tag_query.cfg -q non-existent
+    OK
+Running test case: 152_eol_control_crlf.txt
+    export BOXES_TEST_XXD=1
+    Invoking: boxes -f ../boxes-config -d c -e crlf
+    OK
+Running test case: 153_eol_control_lf.txt
+    export BOXES_TEST_XXD=1
+    Invoking: boxes -f ../boxes-config -d c -e lf
+    OK
+Running test case: 154_eol_control_cr.txt
+    export BOXES_TEST_XXD=1
+    Invoking: boxes -f ../boxes-config -d c -e Cr
+    OK
+Running test case: 155_eol_control_invalid.txt
+    Invoking: boxes -e INVALID
+    OK
+Running test case: 156_eol_control_crlf_design_info.txt
+    export BOXES_TEST_XXD=1
+    Invoking: boxes -f ../boxes-config -l -d c -e crlf
+    OK
+Running test case: 157_eol_control_lf_design_info.txt
+    export BOXES_TEST_XXD=1
+    Invoking: boxes -f ../boxes-config -l -d c -e lf
+    OK
+Running test case: 158_eol_control_crlf_remove.txt
+    export BOXES_TEST_XXD=1
+    Invoking: boxes -f ../boxes-config -d c -e crlf -r
+    OK
+Running test case: 159_eol_control_lf_remove.txt
+    export BOXES_TEST_XXD=1
+    Invoking: boxes -f ../boxes-config -d c -e lf -r
+    OK
+Running test case: 160_list_designs_author_designer.txt
+    Invoking: boxes -f 160_list_designs_author_designer.cfg -l
+    OK
+Running test case: 161_eol_control_list_designs_crlf.txt
+    export BOXES_TEST_XXD=1
+    Invoking: boxes -f 161_eol_control_list_designs_crlf.cfg -l -e CRlf
+    OK
+Running test case: 162_eol_control_list_designs_lf.txt
+    export BOXES_TEST_XXD=1
+    Invoking: boxes -f 162_eol_control_list_designs_lf.cfg -l -e lf
+    OK
+Running test case: 163_tag_query_minus3.txt
+    Invoking: boxes -f 14x_tag_query.cfg -q -tag1,tag2
+    OK
+Running test case: 164_tag_query_empty.txt
+    Invoking: boxes -q ,,
+    OK
+Running test case: 165_design_alias_parent_override.txt
+    Invoking: boxes -f 165_design_alias_parent_override.cfg -d designA -l
+    OK
+Running test case: 166_design_alias_parent_clash.txt
+    Invoking: boxes -f 166_design_alias_parent_clash.cfg -l
+    OK
+Running test case: 167_duplicate_primary_name.txt
+    Invoking: boxes -f 167_duplicate_primary_name.cfg -l
+    OK
+Running test case: 168_parent_keyword_in_sample_ok.txt
+    Invoking: boxes -f 168_parent_keyword_in_sample_ok.cfg -d designB -l
+    OK
+Running test case: 169_peek_escape_comments.txt
+    Invoking: boxes -d peek -p h2
+    OK
+159 tests executed, 159 successful, 0 failed.
+make[1]: Leaving directory '/home/carson/code/test/boxes/boxes-2.1.1'
+   create-stamp debian/debhelper-build-stamp
+   dh_prep
+   dh_auto_install --destdir=debian/boxes/
+   dh_install
+   dh_installdocs
+   dh_installchangelogs
+   dh_installexamples
+   dh_installman
+   dh_installemacsen
+   dh_perl
+   dh_link
+   dh_strip_nondeterminism
+   dh_compress
+   dh_fixperms
+   dh_missing
+   dh_dwz -a
+dwz: debian/boxes/usr/bin/boxes: .debug_info section not present
+   dh_strip -a
+   dh_makeshlibs -a
+   dh_shlibdeps -a
+   dh_installdeb
+   dh_gencontrol
+   dh_md5sums
+   dh_builddeb
+dpkg-deb: building package 'boxes' in '../boxes_2.1.1-2ubuntu1_amd64.deb'.
+ dpkg-genbuildinfo -O../boxes_2.1.1-2ubuntu1_amd64.buildinfo
+ dpkg-genchanges -O../boxes_2.1.1-2ubuntu1_amd64.changes
+dpkg-genchanges: info: not including original source code in upload
+ dpkg-source --after-build .
+dpkg-buildpackage: info: binary and diff upload (original source NOT included)
+Now running lintian boxes_2.1.1-2ubuntu1_amd64.changes ...
+E: boxes changes: bogus-mail-host Changed-By carson@carson-OptiPlex-7060
+E: boxes: bogus-mail-host-in-debian-changelog carson@carson-OptiPlex-7060 version 2.1.1-2ubuntu1 (line 1)
+W: boxes source: maintainer-script-lacks-debhelper-token [debian/postinst]
+W: boxes: no-manual-page usr/bin/testing.sh
+W: boxes: script-with-language-extension usr/bin/testing.sh
+Finished running lintian.

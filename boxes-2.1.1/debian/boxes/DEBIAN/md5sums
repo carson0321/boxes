@@ -1,0 +1,9 @@
+160f7534db930326f795f4461eed9aa0  usr/bin/boxes
+e442a2897e8ed8f3412dab8f69e96e6d  usr/bin/testing.sh
+5b9daf4d1c182ad92f70c4c63f99fb1a  usr/share/doc/boxes/README.md
+e2dd237d6b64eb6cf7dbd67a08bd7102  usr/share/doc/boxes/changelog.Debian.gz
+60a32512bc8e188d4137ab6e4d3dff16  usr/share/doc/boxes/copyright
+842d23bdfac583a4e6ab2a409f0fa9ce  usr/share/doc/boxes/examples/boxes-config
+5a97df2e355d0dc057218947a0257be0  usr/share/doc/boxes/examples/boxes.vim
+d5bc4ed6abf6228c46534a872de5821b  usr/share/emacs/site-lisp/boxes.el
+69cef0c9764cc58b830985ce16556f4d  usr/share/man/man1/boxes.1.gz

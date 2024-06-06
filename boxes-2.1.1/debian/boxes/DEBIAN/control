@@ -1,0 +1,13 @@
+Package: boxes
+Version: 2.1.1-2ubuntu1
+Architecture: amd64
+Maintainer: Salvatore Bonaccorso <carnil@debian.org>
+Installed-Size: 285
+Depends: libc6 (>= 2.34), libpcre2-32-0 (>= 10.22), libunistring2 (>= 0.9.7)
+Section: text
+Priority: optional
+Homepage: https://boxes.thomasjensen.com/
+Description: textmode box- and comment drawing filter
+ Boxes is extremely configurable filter for adding and removing ASCII art
+ (comments, for example) around chunks of text.  Most modern text editors
+ support filtering text through external filters.  Boxes is such a filter.

@@ -1,0 +1,50 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: boxes
+Upstream-Contact: boxes@thomasjensen.com
+Source: https://boxes.thomasjensen.com/download/
+
+Files: *
+Copyright: 1999-2021, Thomas Jensen and the boxes contributors
+License: GPL-2
+
+Files: doc/boxes.el
+Copyright: 1999, 2001, 2006, Jason L. Shiffer
+License: GPL-2+
+
+Files: src/misc/getopt.c
+Copyright: 1987-1998, Free Software Foundation, Inc
+License: GPL-2+
+
+Files: src/misc/getopt.h
+Copyright: 1989-1997, Free Software Foundation, Inc
+License: GPL-2+
+
+Files: debian/*
+Copyright: 1999, KELEMEN Péter <fuji@debian.org>
+ 2012-2021, Salvatore Bonaccorso <carnil@debian.org>
+License: GPL-2+
+
+License: GPL-2
+ This program is  free software: you can redistribute it  and/or modify it under
+ the terms of  the GNU General Public License as published  by the Free Software
+ Foundation, either  version 2  of the  License.
+ .
+ This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ .
+ On Debian systems the full text of the GNU General Public License can be found
+ in the `/usr/share/common-licenses/GPL-2' file.
+
+License: GPL-2+
+ This program is  free software: you can redistribute it  and/or modify it under
+ the terms of  the GNU General Public License as published  by the Free Software
+ Foundation, either  version 2  of the  License, or (at  your option)  any later
+ version.
+ .
+ This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ .
+ On Debian systems the full text of the GNU General Public License can be found
+ in the `/usr/share/common-licenses/GPL-2' file.

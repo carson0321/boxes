@@ -1,0 +1,4 @@
+./out/boxes
+./boxes-config
+./doc/boxes.el
+./testing.sh

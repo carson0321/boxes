@@ -1,0 +1,32 @@
+Format: 1.8
+Date: Thu, 06 Jun 2024 21:00:01 +0800
+Source: boxes
+Binary: boxes
+Built-For-Profiles: noudeb
+Architecture: source amd64
+Version: 2.1.1-2ubuntu1
+Distribution: jammy
+Urgency: medium
+Maintainer: Salvatore Bonaccorso <carnil@debian.org>
+Changed-By: carson <carson@carson-OptiPlex-7060>
+Description:
+ boxes      - textmode box- and comment drawing filter
+Changes:
+ boxes (2.1.1-2ubuntu1) jammy; urgency=medium
+ .
+   * add testing.sh in debian/boxes.install and debian/postinst
+Checksums-Sha1:
+ 823cafb425e9e314af91446319f509894102972e 1045 boxes_2.1.1-2ubuntu1.dsc
+ ee3dcf8323c607fb777a57c70787f3f35805f7bc 8112 boxes_2.1.1-2ubuntu1.debian.tar.xz
+ df474219b46d1254bee0236d98904aa9cb18b191 7248 boxes_2.1.1-2ubuntu1_amd64.buildinfo
+ 6caa6a24803be1ae7ad715058dbb90a8704e38cc 69762 boxes_2.1.1-2ubuntu1_amd64.deb
+Checksums-Sha256:
+ 6e96071dcba579ad9546019ad416262153d254e81d19b45f222f9a220a9eed39 1045 boxes_2.1.1-2ubuntu1.dsc
+ fbd39118db262365cb874281959c132699866c2b2b803c4c39801d0cdc362724 8112 boxes_2.1.1-2ubuntu1.debian.tar.xz
+ c21bf652f25a3f5b00bedffb141ef252d47a79847769fa31580c387fc5e5bc8e 7248 boxes_2.1.1-2ubuntu1_amd64.buildinfo
+ 8a3f66c1bc76769421fa99f52b13266a4adec5f43ff50243c696b80ac79e442c 69762 boxes_2.1.1-2ubuntu1_amd64.deb
+Files:
+ 9fb9222c399a6f5605c9bee91c6be762 1045 text optional boxes_2.1.1-2ubuntu1.dsc
+ 3b795b8ef65c9fdd5ace4f3c961797a1 8112 text optional boxes_2.1.1-2ubuntu1.debian.tar.xz
+ 28951df55ad5cc8785769b383ccb264d 7248 text optional boxes_2.1.1-2ubuntu1_amd64.buildinfo
+ 18d56a7c512989b5a7e90908d8b1bca3 69762 text optional boxes_2.1.1-2ubuntu1_amd64.deb

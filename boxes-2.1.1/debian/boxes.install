@@ -1,3 +1,4 @@
 out/boxes usr/bin
 boxes-config etc/boxes
 doc/boxes.el usr/share/emacs/site-lisp
+testing.sh usr/bin

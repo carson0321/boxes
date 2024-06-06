@@ -1,0 +1,38 @@
+ dpkg-buildpackage -us -uc -ui -S
+dpkg-buildpackage: info: source package boxes
+dpkg-buildpackage: info: source version 2.1.1-2ubuntu1
+dpkg-buildpackage: info: source distribution jammy
+dpkg-buildpackage: info: source changed by carson <carson@carson-OptiPlex-7060>
+ dpkg-source --before-build .
+ debian/rules clean
+dh clean
+   dh_auto_clean
+	make -j12 clean
+make[1]: Entering directory '/home/carson/code/test/boxes/boxes-2.1.1'
+rm -f out/boxes.h tools/boxes.cfg tools/LICENSE.txt tools/boxes.exe tools/README*.md boxes.portable.*.nupkg
+rm -f doc/boxes.1 doc/boxes.1.raw.html doc/boxes.1.html
+make -C src clean
+make[2]: Entering directory '/home/carson/code/test/boxes/boxes-2.1.1/src'
+rm -rf ../out
+rm -f core parser.h boxes.h lex.yy.h
+make[2]: Leaving directory '/home/carson/code/test/boxes/boxes-2.1.1/src'
+make[1]: Leaving directory '/home/carson/code/test/boxes/boxes-2.1.1'
+   dh_clean
+ dpkg-source -b .
+dpkg-source: warning: Version number suggests Ubuntu changes, but Maintainer: does not have Ubuntu address
+dpkg-source: warning: Version number suggests Ubuntu changes, but there is no XSBC-Original-Maintainer field
+dpkg-source: info: using source format '3.0 (quilt)'
+dpkg-source: info: building boxes using existing ./boxes_2.1.1.orig.tar.xz
+dpkg-source: info: using patch list from debian/patches/series
+dpkg-source: info: building boxes in boxes_2.1.1-2ubuntu1.debian.tar.xz
+dpkg-source: info: building boxes in boxes_2.1.1-2ubuntu1.dsc
+ dpkg-genbuildinfo --build=source -O../boxes_2.1.1-2ubuntu1_source.buildinfo
+ dpkg-genchanges --build=source -O../boxes_2.1.1-2ubuntu1_source.changes
+dpkg-genchanges: info: not including original source code in upload
+ dpkg-source --after-build .
+dpkg-buildpackage: info: source-only, diff-only upload (original source NOT included)
+Use of uninitialized value $ENV{"DEBEMAIL"} in pattern match (m//) at /usr/bin/debuild line 1069.
+Now running lintian boxes_2.1.1-2ubuntu1_source.changes ...
+E: boxes changes: bogus-mail-host Changed-By carson@carson-OptiPlex-7060
+W: boxes source: maintainer-script-lacks-debhelper-token [debian/postinst]
+Finished running lintian.

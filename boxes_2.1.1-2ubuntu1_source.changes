@@ -1,0 +1,44 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Thu, 06 Jun 2024 21:00:01 +0800
+Source: boxes
+Built-For-Profiles: noudeb
+Architecture: source
+Version: 2.1.1-2ubuntu1
+Distribution: jammy
+Urgency: medium
+Maintainer: Salvatore Bonaccorso <carnil@debian.org>
+Changed-By: carson <carson@carson-OptiPlex-7060>
+Changes:
+ boxes (2.1.1-2ubuntu1) jammy; urgency=medium
+ .
+   * add testing.sh in debian/boxes.install and debian/postinst
+Checksums-Sha1:
+ b8bcebba266628aed7365d8fe56e8b39fcbd7fb4 1754 boxes_2.1.1-2ubuntu1.dsc
+ ee3dcf8323c607fb777a57c70787f3f35805f7bc 8112 boxes_2.1.1-2ubuntu1.debian.tar.xz
+ 9f43637dd65cc778bd728565d6b0d39ac666a88c 7684 boxes_2.1.1-2ubuntu1_source.buildinfo
+Checksums-Sha256:
+ 80a39bc6501bcbf0a99cb60737d5fb99ade676a6f37f1ceb5f43330396b944a2 1754 boxes_2.1.1-2ubuntu1.dsc
+ fbd39118db262365cb874281959c132699866c2b2b803c4c39801d0cdc362724 8112 boxes_2.1.1-2ubuntu1.debian.tar.xz
+ c57a1a4b25c48c4a03d7f57c7af6cdf32f2a4ca522f377a14b7f67e2c837f75c 7684 boxes_2.1.1-2ubuntu1_source.buildinfo
+Files:
+ dc742aa38b1b3c1d22673bfa3666ae85 1754 text optional boxes_2.1.1-2ubuntu1.dsc
+ 3b795b8ef65c9fdd5ace4f3c961797a1 8112 text optional boxes_2.1.1-2ubuntu1.debian.tar.xz
+ 574e8156a370c700ad2b73f8d31d3f0b 7684 text optional boxes_2.1.1-2ubuntu1_source.buildinfo
+
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAEBCgAdFiEEGu0xAP6ht1WSidhawRJFaVdnHpsFAmZhs20ACgkQwRJFaVdn
+HptwjQv9EKTITWkGu+BwtUnzEg1vQsfkb3KFtPB8F1i6LeFjFshp0dqfvz9ndzf0
+eeHjYhD59muMEKPw98nTtG2BRt3haqfKdupvKtRZ5BfFe+W8hUr8OFydk/JW8qkA
+B0Cim0Us4FdcALXr/Syqz9+7yjlNltmCpRYmAwlmEkokeNUqxnx4fmN5vYDXDjwH
+eaI1dUVTwHu4++vY+GvAMNXsQNdttV2+jUabKJ9qpzRedk/qXu1+aX+zuNDKbAWv
+lD5hnWSi2Wdvq9rwJDmFDeBCI9oOV6KjqsensQfJBnb/OytafZU8EcIAByWMBYpz
+wcgUHE3pQd7SUzJJtbsI9/25Xm8U49w2eb/V3LbLw+GFKbSOUSzGxWiqHVLEHcAA
+7dUAY9WAmU/DzhJpDf8zFf2x/ISBpfoZVjYHxEptkafHShFt6hJ/H+/+9sHtlZxF
+HNmybL+qeWo8QxU5qh/C3eB2EVV/06t9sxSn0fakBUVHUD9z5jbZupEKJECyAMp+
+dOhRGcym
+=+ftI
+-----END PGP SIGNATURE-----
